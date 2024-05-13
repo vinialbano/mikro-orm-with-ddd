@@ -28,16 +28,16 @@ export const LectureSchema = new EntitySchema<Lecture>({
       primary: true,
     },
     title: { type: 'varchar(255)' },
-    // period: {
-    //   kind: 'embedded',
-    //   entity: 'Period',
-    //   nullable: true,
-    //   prefix: 'period_',
-    // },
     period: {
-      type: 'json',
+      kind: 'embedded',
+      entity: 'Period',
       nullable: true,
+      prefix: 'period_',
     },
+    // period: {
+    //   type: 'json',
+    //   nullable: true,
+    // },
     professorId: {
       kind: 'm:1',
       name: 'professor_id',
