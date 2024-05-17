@@ -5,7 +5,7 @@ import { Professor } from '../../domain/entities/professor.entity';
 import { LectureIdSchemaType } from './schema-types/lecture-id.schema-type';
 import { ProfessorIdSchemaType } from './schema-types/professor-id.schema-type';
 
-export const PeriodSchema = new EntitySchema<Omit<Period, 'value'>>({
+export const PeriodSchema = new EntitySchema<Period>({
   class: Period,
   embeddable: true,
   properties: {
@@ -34,10 +34,6 @@ export const LectureSchema = new EntitySchema<Lecture>({
       nullable: true,
       prefix: 'period_',
     },
-    // period: {
-    //   type: 'json',
-    //   nullable: true,
-    // },
     professorId: {
       kind: 'm:1',
       name: 'professor_id',

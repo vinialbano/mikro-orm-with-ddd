@@ -48,7 +48,9 @@ describe('Schemas Unit Tests', () => {
 
     const updatedLecture = await em.findOne(Lecture, { id: lecture.id });
     console.log('retrieved after start', updatedLecture);
-    expect(updatedLecture?.period?.start).toEqual(insertedLecture?.period.start);
-    expect(updatedLecture?.period?.end).toEqual(insertedLecture?.period.end);
+    expect(updatedLecture?.period?.start).toEqual(
+      insertedLecture!.period!.start,
+    );
+    expect(updatedLecture?.period?.end).toEqual(insertedLecture!.period!.end);
   });
 });
