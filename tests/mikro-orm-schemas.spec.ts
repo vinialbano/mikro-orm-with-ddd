@@ -1,17 +1,12 @@
 import { MikroORM, SqliteDriver } from '@mikro-orm/sqlite';
-import { Lecture } from '../src/lectures/domain/entities/lecture.entity';
-import { Professor } from '../src/lectures/domain/entities/professor.entity';
-import {
-  LectureSchema,
-  PeriodSchema,
-  ProfessorSchema,
-} from '../src/lectures/infra/db/schemas';
+import { Lecture } from '../src/domain-entities/lecture.entity';
+import { LectureSchema, PeriodSchema } from '../src/mikro-orm-schemas';
 
 describe('Schemas Unit Tests', () => {
   let orm: MikroORM;
   beforeAll(async () => {
     orm = await MikroORM.init<SqliteDriver>({
-      entities: [LectureSchema, ProfessorSchema, PeriodSchema],
+      entities: [LectureSchema, PeriodSchema],
       dbName: ':memory:',
       driver: SqliteDriver,
       forceEntityConstructor: true,
@@ -26,11 +21,7 @@ describe('Schemas Unit Tests', () => {
     await orm.schema.refreshDatabase();
     const em = orm.em.fork();
 
-    const professor = Professor.create({ name: 'John Doe' });
-    em.persist(professor);
-
     const lecture = Lecture.create({
-      professorId: professor.id,
       title: 'Databases 101',
     });
     em.persist(lecture);

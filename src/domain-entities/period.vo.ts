@@ -1,16 +1,13 @@
-import { ValueObject } from '../../../common/domain/value-object';
-
 export type PeriodProps = {
   start: Date;
   end?: Date;
 };
 
-export class Period extends ValueObject {
+export class Period {
   readonly start: Date;
   readonly end: Date | null;
 
   constructor(props: PeriodProps) {
-    super();
     console.log('PROPS:', props);
     this.validate(props);
     this.start = props.start;
