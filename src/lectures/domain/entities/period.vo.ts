@@ -11,6 +11,7 @@ export class Period extends ValueObject {
 
   constructor(props: PeriodProps) {
     super();
+    console.log('PROPS:', props);
     this.validate(props);
     this.start = props.start;
     this.end = props.end ?? null;
