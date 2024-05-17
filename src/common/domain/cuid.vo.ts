@@ -1,9 +1,11 @@
 import { createId } from '@paralleldrive/cuid2';
 import { ValueObject } from './value-object';
 
-export class Cuid extends ValueObject<string> {
+export class Cuid extends ValueObject {
+  readonly id: string;
   constructor(id?: string) {
-    super(id || createId());
+    super();
+    this.id = id ?? createId();
   }
 }
 

@@ -5,20 +5,19 @@ export type PeriodProps = {
   end?: Date;
 };
 
-export class Period extends ValueObject<PeriodProps> {
+export class Period extends ValueObject {
+
+  readonly start: Date;
+  readonly end: Date | null;
+
+
   constructor(props: PeriodProps) {
-    super(props);
-  }
-
-  get start(): Date {
-    return this.value.start;
-  }
-
-  get end(): Date | undefined {
-    return this.value.end;
+    super();
+    this.start = props.start;
+    this.end = props.end ?? null;
   }
 
   setEndDate(newEndDate: Date): Period {
-    return new Period({ ...this.value, end: newEndDate });
+    return new Period({ start: this.start, end: newEndDate });
   }
 }

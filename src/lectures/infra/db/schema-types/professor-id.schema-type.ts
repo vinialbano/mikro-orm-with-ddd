@@ -7,7 +7,7 @@ export class ProfessorIdSchemaType extends Type<ProfessorId, string> {
     platform: Platform,
   ): string {
     return valueObject instanceof ProfessorId
-      ? valueObject.value
+      ? valueObject.id
       : (valueObject as unknown as string);
   }
 
