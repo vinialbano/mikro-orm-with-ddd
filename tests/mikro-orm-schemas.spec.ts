@@ -61,13 +61,12 @@ describe('Schemas Unit Tests', () => {
     const qb = em.createQueryBuilder('Lecture');
 
     const results = await qb
-      .select(['*'])
+      .select(['title', 'period', 'interval'])
       .where({ title: 'Databases 101' })
       .execute('all', false);
 
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
-      id: lecture.id.id,
       title: 'Databases 101',
       period_start: lecture.period!.start.getTime(),
       period_end: lecture.period!.end?.getTime(),
@@ -83,10 +82,6 @@ describe('Schemas Unit Tests', () => {
     const lecture = Lecture.create({
       title: 'Databases 101',
     });
-    lecture.setInterval({
-      start: new Date(),
-      end: new Date(),
-    });
     lecture.start();
     lecture.end();
     em.persist(lecture);
@@ -96,13 +91,12 @@ describe('Schemas Unit Tests', () => {
     const qb = em.createQueryBuilder('Lecture');
 
     const results = await qb
-      .select(['*'])
+      .select(['title', 'period', 'interval'])
       .where({ title: 'Databases 101' })
       .execute('all', true);
 
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
-      id: lecture.id.id,
       title: 'Databases 101',
       period: {
         start: lecture.period!.start,

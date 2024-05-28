@@ -29,7 +29,6 @@ export const PeriodSchema = new EntitySchema<Period>({
       nullable: true,
     },
   },
-  forceConstructor: true,
 });
 
 export const LectureSchema = new EntitySchema<Lecture>({
