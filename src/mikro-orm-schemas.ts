@@ -44,7 +44,12 @@ export const LectureSchema = new EntitySchema<Lecture>({
       kind: 'embedded',
       entity: 'Period',
       nullable: true,
-      prefix: 'period_',
+    },
+    interval: {
+      kind: 'embedded',
+      entity: 'Period',
+      nullable: true,
+      prefix: 'interval_',
     },
   },
 });

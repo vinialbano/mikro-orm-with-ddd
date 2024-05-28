@@ -18,7 +18,7 @@ export class Period {
     if (!props.start) {
       throw new Error('The start date is required');
     }
-    if (props.start > props.end!) {
+    if (props.end && props.start > props.end!) {
       throw new Error('The start date must be before the end date');
     }
   }
